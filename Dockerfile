@@ -1,16 +1,9 @@
-name: Test Self-Hosted Runner
+FROM nginx:latest
 
-on: [push, pull_request]
+COPY html /usr/share/nginx/html
 
-jobs:
-  test-runner:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+EXPOSE 80
 
-      - name: Print System Info
-        run: uname -a
+CMD ["nginx", "-g", "daemon off;"]
 
-      - name: List Files
-        run: ls -alh
+
